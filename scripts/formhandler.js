@@ -27,6 +27,8 @@
 
             this.reset();
             this.elements[0].focus();
+            document.getElementById('sliderLabel').innerHTML = 30;
+            document.querySelector('[id="inspirationalMessage"]').innerHTML = 'You should really change the strength...';
         });
     };
 

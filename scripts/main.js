@@ -9,17 +9,22 @@
     let DataStore = App.DataStore;
     let FormHandler = App.FormHandler;
     let CheckList = App.CheckList;
+    let Validation = App.Validation;
 
     let myTruck = new Truck('1', new DataStore());
     let checkList = new CheckList(CHECKLIST_SELECTOR);
     window.myTruck = myTruck;
+
+    checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck));
 
     let formHandler = new FormHandler(FORM_SELECTOR);
     formHandler.addSubmitHandler(function (data) {
         myTruck.createOrder.call(myTruck, data);
         checkList.addRow.call(checkList, data);
     });
-    console.log(formHandler);
+    
+    formHandler.addInputHandler(Validation.isCompanyEmail);
+    formHandler.add
 })(window);
 const SLIDER_LOC = 'strengthLevel';
 const SLIDE_OUT = 'sliderLabel';

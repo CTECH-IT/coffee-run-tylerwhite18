@@ -32,6 +32,38 @@
         });
     };
 
+    FormHandler.prototype.addInputHandler = function (func) {
+        this.$formElement.on('input', '[name="emailAddress"]', function (event) {
+            let emailAddress = event.target.value;
+            if (func(emailAddress) == true) {
+                event.target.setCustomValidity('');
+            } else {
+                event.target.setCustomValidity(emailAddress + ' is not an authorized email address!');
+            }
+        });
+    };
+
+    FormHandler.prototype.addYHandler = function (func) {
+        let name = "";
+        let num = 30;
+        this.$formElement.on('input', '[name="coffeeOrder"]', function (event) {
+            name = event.target.value;
+            if (!func(name, num)) {
+                event.target.setCustomValidity('');
+            } else {
+                event.target.setCustomValidity('A ' + name + ' needs to be stronger.');
+            }
+        });
+        this.$formElement.on('input', '[name="strength"]', function (event) {
+            num = event.target.value;
+            if (!func(name, num)) {
+                event.target.setCustomValidity('');
+            } else {
+                event.target.setCustomValidity('Decaf cannot be made with strength ' + num);
+            }
+        });
+    };
+
     App.FormHandler = FormHandler;
     window.App = App;
 })(window);

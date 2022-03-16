@@ -34,11 +34,27 @@
         $div.append($label);
         this.$element = $div;
     }
+
+    CheckList.prototype.removeRow = function (email) {
+        this.$element
+            .find('[value="' + email + '"]')
+            .closest('[data-coffee-order="checkbox"]')
+            .remove();
+    };
     
     CheckList.prototype.addRow = function (coffeeOrder) {
+        this.removeRow(coffeeOrder.emailAddress);
         var rowElement = new Row(coffeeOrder);
         this.$element.append(rowElement.$element);
-    }
+    };
+
+    CheckList.prototype.addClickHandler = function (func) {
+        this.$element.on('click', 'input', function (event) {
+            var email = event.target.value;
+            this.removeRow(email);
+            func(email);
+        }.bind(this));
+    };
 
     App.CheckList = CheckList;
     window.App = App;

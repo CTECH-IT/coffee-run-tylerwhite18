@@ -5,12 +5,12 @@
         isCompanyEmail: function (email) {
             return /.+@isd535\.org$/.test(email);
         },
-        isWeakCoffee: function (string, strength) {
+        isWeakCoffee: function (string, strength) { //title misleading, actually checks if it can be made or not
             let weak = string.toUpperCase().includes('DECAF');
-            if (!weak && strength > 20) {
-                return false;
-            } else {
+            if (weak && strength > 20) {
                 return true;
+            } else {
+                return false;
             }
         }
     };

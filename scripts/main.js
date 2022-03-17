@@ -24,7 +24,7 @@
     });
     
     formHandler.addInputHandler(Validation.isCompanyEmail);
-    formHandler.add
+    formHandler.addYHandler(Validation.isWeakCoffee);
 })(window);
 const SLIDER_LOC = 'strengthLevel';
 const SLIDE_OUT = 'sliderLabel';

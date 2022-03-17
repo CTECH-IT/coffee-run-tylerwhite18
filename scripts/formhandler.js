@@ -45,22 +45,24 @@
 
     FormHandler.prototype.addYHandler = function (func) {
         let name = "";
-        let num = 30;
-        this.$formElement.on('input', '[name="coffeeOrder"]', function (event) {
+        let num = document.getElementById('strengthLevel').value;
+        this.$formElement.on('input', '[name="coffee"]', function (event) {
             name = event.target.value;
-            if (!func(name, num)) {
-                event.target.setCustomValidity('');
+            if (func(name, num)) {
+                event.target.setCustomValidity('A ' + name + ' needs to be weaker.');
             } else {
-                event.target.setCustomValidity('A ' + name + ' needs to be stronger.');
+                event.target.setCustomValidity('');
             }
+            document.getElementById('strengthLevel').setCustomValidity('');
         });
         this.$formElement.on('input', '[name="strength"]', function (event) {
             num = event.target.value;
-            if (!func(name, num)) {
-                event.target.setCustomValidity('');
-            } else {
+            if (func(name, num)) {
                 event.target.setCustomValidity('Decaf cannot be made with strength ' + num);
+            } else {
+                event.target.setCustomValidity('');
             }
+            document.getElementById('coffeeOrder').setCustomValidity('');
         });
     };
 

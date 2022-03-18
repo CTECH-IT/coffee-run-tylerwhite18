@@ -15,8 +15,8 @@
 
 
 
-    //let myTruck = new Truck('1', new DataStore());
-    let myTruck = new Truck('1', RemoteDataStore(SERVER_URL));
+    let myTruck = new Truck('1', new DataStore());
+    //let myTruck = new Truck('1', RemoteDataStore(SERVER_URL));
     let checkList = new CheckList(CHECKLIST_SELECTOR);
     window.myTruck = myTruck;
 
